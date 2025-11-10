@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Speech Emotion Recognition</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+    <style>
+        body {
+            padding: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result {
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h2>Speech Emotion Recognition</h2>
+        <p>Upload an audio file (wav, mp3, m4a, ogg, flac) to predict emotions.</p>
+
+        <form id="uploadForm">
+            <div class="grid">
+                <input type="file" id="audioFile" name="file" accept="audio/*" required />
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+
+        <details>
+            <summary>Or record with your microphone</summary>
+            <div class="grid">
+                <button id="recordBtn" type="button">Start Recording</button>
+                <button id="stopBtn" type="button" class="secondary" disabled>Stop</button>
+            </div>
+            <audio id="preview" controls class="hidden"></audio>
+        </details>
+
+        <article id="status" class="hidden"></article>
+
+        <article id="results" class="hidden">
+            <h4>Predictions</h4>
+            <p class="result"><strong>LSTM</strong>: <span id="lstm"></span> <small id="lstmConf"></small></p>
+            <p class="result"><strong>CNN</strong>: <span id="cnn"></span> <small id="cnnConf"></small></p>
+        </article>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
